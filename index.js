@@ -4,6 +4,7 @@ const { request } = require("http");
 const { randomUUID } = require("crypto");
 const fs = require("fs");
 const { use } = require("express/lib/application");
+const cors = require("cors");
 
 const app = express(); // chama o app para rodar
 
@@ -17,7 +18,7 @@ fs.readFile("users.json", "utf-8", (err, data) => {
   }
 });
 app.use(express.json());
-
+app.use(cors());
 //home =================================================================================================!
 app.get("/", (request, response) => {
   return response.json(users);
